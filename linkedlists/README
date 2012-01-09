@@ -1,0 +1,11 @@
+
+This is a collection of my coding documenting Parallel and Concurrent Haskell techniques.
+The computation goal is to reduce the amount of interwoven sequential computation and IO overhead.
+The data I'm ultimately interested in is both hierarchical and large in scale.
+1. I start simple with length of linked list functions, which perform poorly when parallelized.
+   These are broken into 'gold', 'magenta', and 'red' bins:
+  	'red' tests performance over flat linked lists of size 'end'
+	'magenta' tests performance over linked lists with constant sized nested lists
+	'gold' tests performance over linked lists with variable sized nested lists
+	       Visualization done with ThreadScope
+
