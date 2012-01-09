@@ -5,10 +5,13 @@ The broad goal is to build up a Wide and Deep repository of pitfalls and profile
 The computation goal is to reduce the amount of interwoven sequential computation and IO overhead.
 
 The data I'm ultimately interested in is both hierarchical and large in scale.
-1. I start simple with length of linked list functions, which perform poorly when parallelized.
-   This comes at no suprise: linked lists have good locality, and oftentimes low density (flat),
-   ... parallelization breaks this locality and garbage collection overhead 
-   ... creates too much of a price.
+1. I start simple with length of linked list functions, 
+   which perform poorly when parallelized.
+   
+   This comes at no suprise: linked lists have good locality and 
+   (oftentimes) low density (flat).  Parallelization breaks up this locality.  
+   The resulting garbage collection overhead of breaking up the list into 
+   parallelizable chunks creates too much of a price.
 
    Test modules broken into 'gold', 'magenta', and 'red' bins:
    'red' tests performance over flat linked lists of size 'end'
