@@ -1,6 +1,9 @@
 
-This is a collection of my coding documenting Parallel and Concurrent Haskell techniques.
+This is a documentation of Parallel and Concurrent Haskell techniques.
+The broad goal is to build up a Wide and Deep repository of pitfalls and profiles.
+
 The computation goal is to reduce the amount of interwoven sequential computation and IO overhead.
+
 The data I'm ultimately interested in is both hierarchical and large in scale.
 1. I start simple with length of linked list functions, which perform poorly when parallelized.
    These are broken into 'gold', 'magenta', and 'red' bins:
