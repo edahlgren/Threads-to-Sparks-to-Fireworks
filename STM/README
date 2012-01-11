@@ -32,6 +32,7 @@ STM world:
 newTVar :: a -> STM (TVar a)
 readTVar :: TVar a -> STM a
 writeTVar :: TVar a -> a -> STM () 
+
 Bridge from STM world to IO world:
 atomically :: STM a -> IO a
 
