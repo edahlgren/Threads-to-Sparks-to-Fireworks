@@ -1,0 +1,43 @@
+This is a group of modules for basic STM functionality
+
+
+
+The traditional model of concurrent programming:
+1. spawn reliant tasks to compute in different subprocesses 
+2. make sure that one task doesn't corrupt the working memory of another by 'locking' the first off
+3. notify other processes of when a thread is done, in order to 'unlock' it and pass it's computation to
+   another task
+
+But, Uh Oh . . . .
+- forgotten locks
+- inconsistent locking order
+- corruption -> uncaught exceptions
+- lost wakeups provoked by unpredicted notifications
+- also the whole system is very hard to program fine-grainly and correctly  
+  
+
+So What's the point of STM?
+1. executes tasks atomically.  This means in isolation from other tasks, and thus IO
+2. once we enter a task block, other tasks cannot see what we did until we exit
+3. the crux is that our tasks are safe from corruption by other tasks, but often a task will  
+   be working on the same data as another task, because they are ignorant of each other
+   Changes made by a task are only accepted (and made visible) if its data is not shared by another task
+   ... else, the task is often restarted, (or you just move on, like in transfer3)
+
+For example, if our task is to take money out of raf's bank account and put it into erin's,
+once our task has been completed (and modifies no other task's data), raf and erin's updated
+accounts will both be visible to all other tasks at the same time, in IO world.
+
+STM world:
+newTVar :: a -> STM (TVar a)
+readTVar :: TVar a -> STM a
+writeTVar :: TVar a -> a -> STM () 
+Bridge from STM world to IO world:
+atomically :: STM a -> IO a
+
+It's that simple!
+
+
+
+
+
